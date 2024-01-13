@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mena_conf/core/services/navigation_service.dart';
+import 'package:mena_conf/locator.dart';
 import 'package:mena_conf/ui/pages/home/home_view.dart';
-import 'package:mena_conf/ui/pages/main_app/main_app_view.dart';
 
 
 class RouteData {
@@ -19,22 +20,27 @@ class RouterVariables {
 
 /// The route configuration.
 final GoRouter router = GoRouter(
+  initialLocation: RouterVariables.mainApp.path,
+  navigatorKey: locator<NavigationService>().navigationKey,
   routes: <RouteBase>[
     GoRoute(
-      path: RouterVariables.mainApp.path,
-      name: RouterVariables.mainApp.name,
+      path: RouterVariables.home.path,
+      name: RouterVariables.home.name,
+      parentNavigatorKey: locator<NavigationService>().navigationKey,
       builder: (BuildContext context, GoRouterState state) {
-        return const MainAppView();
+        return const HomeView();
       },
-      routes: <RouteBase>[
-        GoRoute(
-          path: RouterVariables.home.path,
-          name: RouterVariables.home.name,
-          builder: (BuildContext context, GoRouterState state) {
-            return const HomeView();
-          },
-        ),
-      ],
     ),
   ],
 );
+
+/// Returns a material page with a [child] and key == [state.pageKey]
+Page getPage({
+  required Widget child,
+  required GoRouterState state,
+}) {
+  return MaterialPage(
+    key: state.pageKey,
+    child: child,
+  );
+}
