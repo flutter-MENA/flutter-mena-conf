@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 
 class NavigationService {
 
-
   /// Global key for accessing the main Navigator state.
   ///
   /// Allows programmatic navigation and control of the primary Navigator.

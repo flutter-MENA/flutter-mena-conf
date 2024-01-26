@@ -7,6 +7,7 @@ class ScheduleJSONKeys {
   static const title = 'title';
   static const description = 'description';
   static const type = 'type';
+  static const time = 'time';
 }
 
 enum ScheduleItemType {
@@ -58,6 +59,10 @@ class ScheduleItem{
   final String description;
   /// The schedule item type
   final ScheduleItemType type;
+
+  /// The item date
+  final DateTime time;
+
   /// The schedule item contributors data if [type] is [ScheduleItemType.withContributors]
   final List<ContributorsData>? contributorsData;
 
@@ -65,6 +70,7 @@ class ScheduleItem{
     required this.title,
     required this.description,
     required this.type,
+    required this.time,
     this.contributorsData
   });
 
@@ -72,6 +78,7 @@ class ScheduleItem{
     title: json[ScheduleJSONKeys.title],
     description: json[ScheduleJSONKeys.description],
     type: ScheduleItemType.values[json[ScheduleJSONKeys.type]],
+    time: json[ScheduleJSONKeys.time],
     contributorsData: json[ScheduleJSONKeys.items] != null ? (json[ScheduleJSONKeys.items] as List).map((e) => ContributorsData.fromJSON(e)).toList() : null
   );
 

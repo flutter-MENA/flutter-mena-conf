@@ -5,5 +5,5 @@ import 'package:mena_conf/core/services/navigation_service.dart';
 final locator = GetIt.instance;
 
 void setupLocator() {
-  locator.registerLazySingleton(() => NavigationService());
+  locator.registerLazySingleton<NavigationService>(() => NavigationService());
 }

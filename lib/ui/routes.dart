@@ -14,13 +14,13 @@ class RouteData {
 
 class RouterVariables {
   static const mainApp = RouteData(name: 'main', path: '/');
-  static const home = RouteData(name: 'home', path: 'home');
+  static const home = RouteData(name: 'home', path: '/home');
 }
 
 
 /// The route configuration.
 final GoRouter router = GoRouter(
-  initialLocation: RouterVariables.mainApp.path,
+  initialLocation: RouterVariables.home.path,
   navigatorKey: locator<NavigationService>().navigationKey,
   routes: <RouteBase>[
     GoRoute(
